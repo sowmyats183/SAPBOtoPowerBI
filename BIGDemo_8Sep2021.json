@@ -1,0 +1,922 @@
+{
+"create": {
+"database": {
+"name": "BIGDemo_8Sep2021",
+"compatibilityLevel": 1550,
+"model": {
+"culture": "en-US",
+"dataSources" : [// Bindings for DataSources
+{
+"name": "OracleFINPLAN",
+"connectionString": "Provider=ODBC;Data Source=Odbc.DataSource(\"dsn=OracleFINPLAN\"),OBICOE_Schema:Source{[Name=\"OBICOE\",Kind=\"Schema\"]}[Data];Initial Catalog=bigateway;Integrated Security=SSPI;Persist Security Info=false",
+"impersonationMode": "impersonateServiceAccount"
+}
+],
+"dataAccessOptions": {
+"legacyRedirects": true,
+"returnErrorValuesAsNull": true
+},
+"defaultPowerBIDataSourceVersion": "powerBI_V3",
+"tables": [
+{
+"name": "DIM_ACCOUNT",
+"columns": [
+{
+"name": "ACCT_ID",
+"dataType": "double",
+"sourceColumn": "ACCT_ID",
+"summarizeBy": "none"
+},
+{
+"name": "ACCT_DESC",
+"dataType": "string",
+"sourceColumn": "ACCT_DESC",
+"summarizeBy": "none"
+},
+{
+"name": "TRANS_ID",
+"dataType": "double",
+"sourceColumn": "TRANS_ID",
+"summarizeBy": "count"
+},
+{
+"name": "REC_ST_DT",
+"dataType": "dateTime",
+"sourceColumn": "REC_ST_DT",
+"formatString": "General Date",
+"summarizeBy": "none"
+},
+{
+"name": "REC_ED_DT",
+"dataType": "dateTime",
+"sourceColumn": "REC_ED_DT",
+"formatString": "General Date",
+"summarizeBy": "none"
+},
+{
+"name": "REC_ACT_FLAG",
+"dataType": "string",
+"sourceColumn": "REC_ACT_FLAG",
+"summarizeBy": "none"
+}
+],
+"partitions": [
+{
+"name": "DIM_ACCOUNT",
+"mode": "import",
+"source": {
+"type": "m",
+"expression": [
+"let",
+"    Source = Odbc.DataSource(\"dsn=OracleFINPLAN\", [HierarchicalNavigation=true]),",
+"    OBICOE_Schema = Source{[Name=\"OBICOE\",Kind=\"Schema\"]}[Data],",
+"    DIM_ACCOUNT_Table = OBICOE_Schema{[Name=\"DIM_ACCOUNT\",Kind=\"Table\"]}[Data]",
+"in",
+"    DIM_ACCOUNT_Table"
+]
+}
+}
+]
+},
+{
+"name": "DIM_CURRENCY",
+"columns": [
+{
+"name": "CURR_ID",
+"dataType": "double",
+"sourceColumn": "CURR_ID",
+"summarizeBy": "none"
+},
+{
+"name": "CURR_CODE",
+"dataType": "string",
+"sourceColumn": "CURR_CODE",
+"summarizeBy": "none"
+},
+{
+"name": "CURR_DESC",
+"dataType": "string",
+"sourceColumn": "CURR_DESC",
+"summarizeBy": "none"
+},
+{
+"name": "TRANS_ID",
+"dataType": "double",
+"sourceColumn": "TRANS_ID",
+"summarizeBy": "count"
+},
+{
+"name": "REC_ST_DT",
+"dataType": "dateTime",
+"sourceColumn": "REC_ST_DT",
+"formatString": "General Date",
+"summarizeBy": "none"
+},
+{
+"name": "REC_ED_DT",
+"dataType": "dateTime",
+"sourceColumn": "REC_ED_DT",
+"formatString": "General Date",
+"summarizeBy": "none"
+},
+{
+"name": "REC_ACT_FLAG",
+"dataType": "string",
+"sourceColumn": "REC_ACT_FLAG",
+"summarizeBy": "none"
+}
+],
+"partitions": [
+{
+"name": "DIM_CURRENCY",
+"mode": "import",
+"source": {
+"type": "m",
+"expression": [
+"let",
+"    Source = Odbc.DataSource(\"dsn=OracleFINPLAN\", [HierarchicalNavigation=true]),",
+"    OBICOE_Schema = Source{[Name=\"OBICOE\",Kind=\"Schema\"]}[Data],",
+"    DIM_CURRENCY_Table = OBICOE_Schema{[Name=\"DIM_CURRENCY\",Kind=\"Table\"]}[Data]",
+"in",
+"    DIM_CURRENCY_Table"
+]
+}
+}
+]
+},
+{
+"name": "DIM_DATE",
+"columns": [
+{
+"name": "DATE_KEY",
+"dataType": "double",
+"sourceColumn": "DATE_KEY",
+"summarizeBy": "sum"
+},
+{
+"name": "FULL_DATE",
+"dataType": "dateTime",
+"sourceColumn": "FULL_DATE",
+"formatString": "General Date",
+"summarizeBy": "none"
+},
+{
+"name": "DAY_OF_WEEK",
+"dataType": "double",
+"sourceColumn": "DAY_OF_WEEK",
+"summarizeBy": "sum"
+},
+{
+"name": "DAY_NUM_IN_MONTH",
+"dataType": "double",
+"sourceColumn": "DAY_NUM_IN_MONTH",
+"summarizeBy": "sum"
+},
+{
+"name": "DAY_NUM_OVERALL",
+"dataType": "double",
+"sourceColumn": "DAY_NUM_OVERALL",
+"summarizeBy": "sum"
+},
+{
+"name": "DAY_NAME",
+"dataType": "string",
+"sourceColumn": "DAY_NAME",
+"summarizeBy": "none"
+},
+{
+"name": "DAY_ABBREV",
+"dataType": "string",
+"sourceColumn": "DAY_ABBREV",
+"summarizeBy": "none"
+},
+{
+"name": "WEEKDAY_FLAG",
+"dataType": "string",
+"sourceColumn": "WEEKDAY_FLAG",
+"summarizeBy": "none"
+},
+{
+"name": "WEEK_NUM_IN_YEAR",
+"dataType": "double",
+"sourceColumn": "WEEK_NUM_IN_YEAR",
+"summarizeBy": "sum"
+},
+{
+"name": "WEEK_NUM_OVERALL",
+"dataType": "double",
+"sourceColumn": "WEEK_NUM_OVERALL",
+"summarizeBy": "sum"
+},
+{
+"name": "WEEK_BEGIN_DATE",
+"dataType": "dateTime",
+"sourceColumn": "WEEK_BEGIN_DATE",
+"formatString": "General Date",
+"summarizeBy": "none"
+},
+{
+"name": "WEEK_BEGIN_DATE_KEY",
+"dataType": "double",
+"sourceColumn": "WEEK_BEGIN_DATE_KEY",
+"summarizeBy": "sum"
+},
+{
+"name": "MONTH",
+"dataType": "string",
+"sourceColumn": "MONTH",
+"summarizeBy": "none"
+},
+{
+"name": "MOUNTH_NUM_OVERALL",
+"dataType": "double",
+"sourceColumn": "MOUNTH_NUM_OVERALL",
+"summarizeBy": "sum"
+},
+{
+"name": "MONTH_NAME",
+"dataType": "string",
+"sourceColumn": "MONTH_NAME",
+"summarizeBy": "none"
+},
+{
+"name": "MONTH_ABBREV",
+"dataType": "string",
+"sourceColumn": "MONTH_ABBREV",
+"summarizeBy": "none"
+},
+{
+"name": "QUARTER",
+"dataType": "string",
+"sourceColumn": "QUARTER",
+"summarizeBy": "none"
+},
+{
+"name": "YEAR",
+"dataType": "double",
+"sourceColumn": "YEAR",
+"summarizeBy": "sum"
+},
+{
+"name": "YEARNO",
+"dataType": "double",
+"sourceColumn": "YEARNO",
+"summarizeBy": "sum"
+},
+{
+"name": "FISCAL_MONTH",
+"dataType": "double",
+"sourceColumn": "FISCAL_MONTH",
+"summarizeBy": "sum"
+},
+{
+"name": "FISCAL_QUARTER",
+"dataType": "double",
+"sourceColumn": "FISCAL_QUARTER",
+"summarizeBy": "sum"
+},
+{
+"name": "FISCAL_YEAR",
+"dataType": "double",
+"sourceColumn": "FISCAL_YEAR",
+"summarizeBy": "sum"
+},
+{
+"name": "LAST_DAY_IN_MONTH_FLAG",
+"dataType": "string",
+"sourceColumn": "LAST_DAY_IN_MONTH_FLAG",
+"summarizeBy": "none"
+},
+{
+"name": "SAME_DAY_YEAR_AGO",
+"dataType": "string",
+"sourceColumn": "SAME_DAY_YEAR_AGO",
+"summarizeBy": "none"
+},
+{
+"name": "QUARTER_NUM",
+"dataType": "double",
+"sourceColumn": "QUARTER_NUM",
+"summarizeBy": "sum"
+},
+{
+"name": "YEAR_YY",
+"dataType": "string",
+"sourceColumn": "YEAR_YY",
+"summarizeBy": "none"
+}
+],
+"partitions": [
+{
+"name": "DIM_DATE",
+"mode": "import",
+"source": {
+"type": "m",
+"expression": [
+"let",
+"    Source = Odbc.DataSource(\"dsn=OracleFINPLAN\", [HierarchicalNavigation=true]),",
+"    OBICOE_Schema = Source{[Name=\"OBICOE\",Kind=\"Schema\"]}[Data],",
+"    DIM_DATE_Table = OBICOE_Schema{[Name=\"DIM_DATE\",Kind=\"Table\"]}[Data]",
+"in",
+"    DIM_DATE_Table"
+]
+}
+}
+]
+},
+{
+"name": "DIM_ENTITY",
+"columns": [
+{
+"name": "ENTITY_ID",
+"dataType": "double",
+"sourceColumn": "ENTITY_ID",
+"summarizeBy": "none"
+},
+{
+"name": "ENTITY_DESC",
+"dataType": "string",
+"sourceColumn": "ENTITY_DESC",
+"summarizeBy": "none"
+},
+{
+"name": "TRANS_ID",
+"dataType": "double",
+"sourceColumn": "TRANS_ID",
+"summarizeBy": "count"
+},
+{
+"name": "REC_ST_DT",
+"dataType": "dateTime",
+"sourceColumn": "REC_ST_DT",
+"formatString": "General Date",
+"summarizeBy": "none"
+},
+{
+"name": "REC_ED_DT",
+"dataType": "dateTime",
+"sourceColumn": "REC_ED_DT",
+"formatString": "General Date",
+"summarizeBy": "none"
+},
+{
+"name": "REC_ACT_FLAG",
+"dataType": "string",
+"sourceColumn": "REC_ACT_FLAG",
+"summarizeBy": "none"
+}
+],
+"partitions": [
+{
+"name": "DIM_ENTITY",
+"mode": "import",
+"source": {
+"type": "m",
+"expression": [
+"let",
+"    Source = Odbc.DataSource(\"dsn=OracleFINPLAN\", [HierarchicalNavigation=true]),",
+"    OBICOE_Schema = Source{[Name=\"OBICOE\",Kind=\"Schema\"]}[Data],",
+"    DIM_ENTITY_Table = OBICOE_Schema{[Name=\"DIM_ENTITY\",Kind=\"Table\"]}[Data]",
+"in",
+"    DIM_ENTITY_Table"
+]
+}
+}
+]
+},
+{
+"name": "FCT_PBCS",
+"columns": [
+{
+"name": "PLAN_ELE_ID",
+"dataType": "double",
+"sourceColumn": "PLAN_ELE_ID",
+"summarizeBy": "none"
+},
+{
+"name": "PROD_ID",
+"dataType": "double",
+"sourceColumn": "PROD_ID",
+"summarizeBy": "none"
+},
+{
+"name": "REVE_DRIV_ID",
+"dataType": "double",
+"sourceColumn": "REVE_DRIV_ID",
+"summarizeBy": "none"
+},
+{
+"name": "ENTITY_ID",
+"dataType": "double",
+"sourceColumn": "ENTITY_ID",
+"summarizeBy": "none"
+},
+{
+"name": "DATE_KEY",
+"dataType": "double",
+"sourceColumn": "DATE_KEY",
+"summarizeBy": "sum"
+},
+{
+"name": "SCENA_ID",
+"dataType": "double",
+"sourceColumn": "SCENA_ID",
+"summarizeBy": "none"
+},
+{
+"name": "VER_ID",
+"dataType": "double",
+"sourceColumn": "VER_ID",
+"summarizeBy": "none"
+},
+{
+"name": "CURR_ID",
+"dataType": "double",
+"sourceColumn": "CURR_ID",
+"summarizeBy": "none"
+},
+{
+"name": "ACCT_ID",
+"dataType": "double",
+"sourceColumn": "ACCT_ID",
+"summarizeBy": "none"
+},
+{
+"name": "YEAR_YY",
+"dataType": "string",
+"sourceColumn": "YEAR_YY",
+"summarizeBy": "none"
+},
+{
+"name": "MONTH_NAME",
+"dataType": "string",
+"sourceColumn": "MONTH_NAME",
+"summarizeBy": "none"
+},
+{
+"name": "MONTHLY_VAL",
+"dataType": "double",
+"sourceColumn": "MONTHLY_VAL",
+"summarizeBy": "sum"
+},
+{
+"name": "TRANS_ID",
+"dataType": "double",
+"sourceColumn": "TRANS_ID",
+"summarizeBy": "count"
+}
+],
+"partitions": [
+{
+"name": "FCT_PBCS",
+"mode": "import",
+"source": {
+"type": "m",
+"expression": [
+"let",
+"    Source = Odbc.DataSource(\"dsn=OracleFINPLAN\", [HierarchicalNavigation=true]),",
+"    OBICOE_Schema = Source{[Name=\"OBICOE\",Kind=\"Schema\"]}[Data],",
+"    FCT_PBCS_Table = OBICOE_Schema{[Name=\"FCT_PBCS\",Kind=\"Table\"]}[Data]",
+"in",
+"    FCT_PBCS_Table"
+]
+}
+}
+]
+},
+{
+"name": "DIM_PLAN",
+"columns": [
+{
+"name": "PLAN_ELE_ID",
+"dataType": "double",
+"sourceColumn": "PLAN_ELE_ID",
+"summarizeBy": "none"
+},
+{
+"name": "PLAN_ELE_DESC",
+"dataType": "string",
+"sourceColumn": "PLAN_ELE_DESC",
+"summarizeBy": "none"
+},
+{
+"name": "TRANS_ID",
+"dataType": "double",
+"sourceColumn": "TRANS_ID",
+"summarizeBy": "count"
+},
+{
+"name": "REC_ST_DT",
+"dataType": "dateTime",
+"sourceColumn": "REC_ST_DT",
+"formatString": "General Date",
+"summarizeBy": "none"
+},
+{
+"name": "REC_ED_DT",
+"dataType": "dateTime",
+"sourceColumn": "REC_ED_DT",
+"formatString": "General Date",
+"summarizeBy": "none"
+},
+{
+"name": "REC_ACT_FLAG",
+"dataType": "string",
+"sourceColumn": "REC_ACT_FLAG",
+"summarizeBy": "none"
+}
+],
+"partitions": [
+{
+"name": "DIM_PLAN",
+"mode": "import",
+"source": {
+"type": "m",
+"expression": [
+"let",
+"    Source = Odbc.DataSource(\"dsn=OracleFINPLAN\", [HierarchicalNavigation=true]),",
+"    OBICOE_Schema = Source{[Name=\"OBICOE\",Kind=\"Schema\"]}[Data],",
+"    DIM_PLAN_Table = OBICOE_Schema{[Name=\"DIM_PLAN\",Kind=\"Table\"]}[Data]",
+"in",
+"    DIM_PLAN_Table"
+]
+}
+}
+]
+},
+{
+"name": "DIM_PRODUCT",
+"columns": [
+{
+"name": "PROD_ID",
+"dataType": "double",
+"sourceColumn": "PROD_ID",
+"summarizeBy": "none"
+},
+{
+"name": "PROD_DESC",
+"dataType": "string",
+"sourceColumn": "PROD_DESC",
+"summarizeBy": "none"
+},
+{
+"name": "TRANS_ID",
+"dataType": "double",
+"sourceColumn": "TRANS_ID",
+"summarizeBy": "count"
+},
+{
+"name": "REC_ST_DT",
+"dataType": "dateTime",
+"sourceColumn": "REC_ST_DT",
+"formatString": "General Date",
+"summarizeBy": "none"
+},
+{
+"name": "REC_ED_DT",
+"dataType": "dateTime",
+"sourceColumn": "REC_ED_DT",
+"formatString": "General Date",
+"summarizeBy": "none"
+},
+{
+"name": "REC_ACT_FLAG",
+"dataType": "string",
+"sourceColumn": "REC_ACT_FLAG",
+"summarizeBy": "none"
+}
+],
+"partitions": [
+{
+"name": "DIM_PRODUCT",
+"mode": "import",
+"source": {
+"type": "m",
+"expression": [
+"let",
+"    Source = Odbc.DataSource(\"dsn=OracleFINPLAN\", [HierarchicalNavigation=true]),",
+"    OBICOE_Schema = Source{[Name=\"OBICOE\",Kind=\"Schema\"]}[Data],",
+"    DIM_PRODUCT_Table = OBICOE_Schema{[Name=\"DIM_PRODUCT\",Kind=\"Table\"]}[Data]",
+"in",
+"    DIM_PRODUCT_Table"
+]
+}
+}
+]
+},
+{
+"name": "DIM_REVE_DRIVER",
+"columns": [
+{
+"name": "REVE_DRIV_ID",
+"dataType": "double",
+"sourceColumn": "REVE_DRIV_ID",
+"summarizeBy": "none"
+},
+{
+"name": "REVE_DRIV_DESC",
+"dataType": "string",
+"sourceColumn": "REVE_DRIV_DESC",
+"summarizeBy": "none"
+},
+{
+"name": "TRANS_ID",
+"dataType": "double",
+"sourceColumn": "TRANS_ID",
+"summarizeBy": "count"
+},
+{
+"name": "REC_ST_DT",
+"dataType": "dateTime",
+"sourceColumn": "REC_ST_DT",
+"formatString": "General Date",
+"summarizeBy": "none"
+},
+{
+"name": "REC_ED_DT",
+"dataType": "dateTime",
+"sourceColumn": "REC_ED_DT",
+"formatString": "General Date",
+"summarizeBy": "none"
+},
+{
+"name": "REC_ACT_FLAG",
+"dataType": "string",
+"sourceColumn": "REC_ACT_FLAG",
+"summarizeBy": "none"
+}
+],
+"partitions": [
+{
+"name": "DIM_REVE_DRIVER",
+"mode": "import",
+"source": {
+"type": "m",
+"expression": [
+"let",
+"    Source = Odbc.DataSource(\"dsn=OracleFINPLAN\", [HierarchicalNavigation=true]),",
+"    OBICOE_Schema = Source{[Name=\"OBICOE\",Kind=\"Schema\"]}[Data],",
+"    DIM_REVE_DRIVER_Table = OBICOE_Schema{[Name=\"DIM_REVE_DRIVER\",Kind=\"Table\"]}[Data]",
+"in",
+"    DIM_REVE_DRIVER_Table"
+]
+}
+}
+]
+},
+{
+"name": "DIM_SCENARIO",
+"columns": [
+{
+"name": "SCENA_ID",
+"dataType": "double",
+"sourceColumn": "SCENA_ID",
+"summarizeBy": "none"
+},
+{
+"name": "SCENA_DESC",
+"dataType": "string",
+"sourceColumn": "SCENA_DESC",
+"summarizeBy": "none"
+},
+{
+"name": "TRANS_ID",
+"dataType": "double",
+"sourceColumn": "TRANS_ID",
+"summarizeBy": "count"
+},
+{
+"name": "REC_ST_DT",
+"dataType": "dateTime",
+"sourceColumn": "REC_ST_DT",
+"formatString": "General Date",
+"summarizeBy": "none"
+},
+{
+"name": "REC_ED_DT",
+"dataType": "dateTime",
+"sourceColumn": "REC_ED_DT",
+"formatString": "General Date",
+"summarizeBy": "none"
+},
+{
+"name": "REC_ACT_FLAG",
+"dataType": "string",
+"sourceColumn": "REC_ACT_FLAG",
+"summarizeBy": "none"
+}
+],
+"partitions": [
+{
+"name": "DIM_SCENARIO",
+"mode": "import",
+"source": {
+"type": "m",
+"expression": [
+"let",
+"    Source = Odbc.DataSource(\"dsn=OracleFINPLAN\", [HierarchicalNavigation=true]),",
+"    OBICOE_Schema = Source{[Name=\"OBICOE\",Kind=\"Schema\"]}[Data],",
+"    DIM_SCENARIO_Table = OBICOE_Schema{[Name=\"DIM_SCENARIO\",Kind=\"Table\"]}[Data]",
+"in",
+"    DIM_SCENARIO_Table"
+]
+}
+}
+]
+},
+{
+"name": "DIM_VERSION",
+"columns": [
+{
+"name": "VER_ID",
+"dataType": "double",
+"sourceColumn": "VER_ID",
+"summarizeBy": "none"
+},
+{
+"name": "VER_DESC",
+"dataType": "string",
+"sourceColumn": "VER_DESC",
+"summarizeBy": "none"
+},
+{
+"name": "TRANS_ID",
+"dataType": "double",
+"sourceColumn": "TRANS_ID",
+"summarizeBy": "count"
+},
+{
+"name": "REC_ST_DT",
+"dataType": "dateTime",
+"sourceColumn": "REC_ST_DT",
+"formatString": "General Date",
+"summarizeBy": "none"
+},
+{
+"name": "REC_ED_DT",
+"dataType": "dateTime",
+"sourceColumn": "REC_ED_DT",
+"formatString": "General Date",
+"summarizeBy": "none"
+},
+{
+"name": "REC_ACT_FLAG",
+"dataType": "string",
+"sourceColumn": "REC_ACT_FLAG",
+"summarizeBy": "none"
+}
+],
+"partitions": [
+{
+"name": "DIM_VERSION",
+"mode": "import",
+"source": {
+"type": "m",
+"expression": [
+"let",
+"    Source = Odbc.DataSource(\"dsn=OracleFINPLAN\", [HierarchicalNavigation=true]),",
+"    OBICOE_Schema = Source{[Name=\"OBICOE\",Kind=\"Schema\"]}[Data],",
+"    DIM_VERSION_Table = OBICOE_Schema{[Name=\"DIM_VERSION\",Kind=\"Table\"]}[Data]",
+"in",
+"    DIM_VERSION_Table"
+]
+}
+}
+]
+},
+{
+"name": "STG_ACCT_HIER",
+"columns": [
+{
+"name": "ACCOUNT",
+"dataType": "string",
+"sourceColumn": "ACCOUNT",
+"summarizeBy": "none",
+},
+{
+"name": "PARENT",
+"dataType": "string",
+"sourceColumn": "PARENT",
+"summarizeBy": "none",
+},
+{
+"name": "HIER_CODE",
+"dataType": "double",
+"sourceColumn": "HIER_CODE",
+"summarizeBy": "sum",
+},
+{
+"name": "ACCOUNT_TYPE",
+"dataType": "string",
+"sourceColumn": "ACCOUNT_TYPE",
+"summarizeBy": "none",
+}
+],
+"partitions": [
+{
+"name": "STG_ACCT_HIER",
+"mode": "import",
+"source": {
+"type": "m",
+"expression": [
+"let",
+"    Source = Odbc.DataSource(\"dsn=OracleFINPLAN\", [HierarchicalNavigation=true]),",
+"    OBICOE_Schema = Source{[Name=\"OBICOE\",Kind=\"Schema\"]}[Data],",
+"    STG_ACCT_HIER_Table = OBICOE_Schema{[Name=\"STG_ACCT_HIER\",Kind=\"Table\"]}[Data]",
+"in",
+"    STG_ACCT_HIER_Table"
+]
+}
+}
+]
+},
+],
+"relationships": [
+{
+"name": "Acc_Fct",
+"fromTable": "FCT_PBCS",
+"fromColumn": "ACCT_ID",
+"toTable": "DIM_ACCOUNT",
+"toColumn": "ACCT_ID"
+},
+{
+"name": "Prod_Fct",
+"fromTable": "FCT_PBCS",
+"fromColumn": "PROD_ID",
+"toTable": "DIM_PRODUCT",
+"toColumn": "PROD_ID"
+},
+{
+"name": "Entity_Fct",
+"fromTable": "FCT_PBCS",
+"fromColumn": "ENTITY_ID",
+"toTable": "DIM_ENTITY",
+"toColumn": "ENTITY_ID"
+},
+{
+"name": "Currency_Fct",
+"fromTable": "FCT_PBCS",
+"fromColumn": "CURR_ID",
+"toTable": "DIM_CURRENCY",
+"toColumn": "CURR_ID"
+},
+{
+"name": "Plan_Fct",
+"fromTable": "FCT_PBCS",
+"fromColumn": "PLAN_ELE_ID",
+"toTable": "DIM_PLAN",
+"toColumn": "PLAN_ELE_ID"
+},
+{
+"name": "Rev_Fct",
+"fromTable": "FCT_PBCS",
+"fromColumn": "REVE_DRIV_ID",
+"toTable": "DIM_REVE_DRIVER",
+"toColumn": "REVE_DRIV_ID"
+},
+{
+"name": "Version_Fct",
+"fromTable": "FCT_PBCS",
+"fromColumn": "VER_ID",
+"toTable": "DIM_VERSION",
+"toColumn": "VER_ID"
+},
+{
+"name": "STGAcc_Fct",
+"fromTable": "FCT_PBCS",
+"fromColumn": "ACCT_ID",
+"toTable": "STG_ACCT_HIER",
+"toColumn": "HIER_CODE"
+},
+{
+"name": "Sce_Fct",
+"fromTable": "FCT_PBCS",
+"fromColumn": "SCENA_ID",
+"toTable": "DIM_SCENARIO",
+"toColumn": "SCENA_ID"
+},
+{
+"name": "Date",
+"toCardinality": "many",
+"fromTable": "FCT_PBCS",
+"fromColumn": "YEAR_YY",
+"toTable": "DIM_DATE",
+"toColumn": "YEAR_YY",
+"crossFilteringBehavior": "bothDirections"
+},
+{
+"name": "Date1",
+"toCardinality": "many",
+"fromTable": "FCT_PBCS",
+"fromColumn": "MONTH_NAME",
+"toTable": "DIM_DATE",
+"toColumn": "MONTH_ABBREV",
+"isActive": false,
+"crossFilteringBehavior": "bothDirections"
+}
+],
+}
+}
+}
+}
+
